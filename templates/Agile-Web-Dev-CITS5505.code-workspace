@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "Agile-Web-Dev-CITS5505",
+			"path": ".."
+		},
+		{
+			"name": "static",
+			"path": "../../../../../Downloads/New folder1/static"
+		},
+		{
+			"name": "templates",
+			"path": "../../../../../Downloads/New folder1/templates"
+		}
+	],
+	"settings": {}
+}

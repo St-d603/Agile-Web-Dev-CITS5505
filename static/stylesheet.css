@@ -372,10 +372,22 @@ body.login {
     background-color: #ffd5de;
 }
 
-/* for map page */
+/* for map page in new restaurants */
 #map {
     position: relative;
     top: 100%;
     width: 1860px;
     height: 400px;
 }
+
+#instructions {
+    position: sticky;
+    margin: 20px;
+    width: 25%;
+    top: 0;
+    bottom: 20%;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: scroll;
+    font-family: sans-serif;
+  }
