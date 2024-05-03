@@ -70,9 +70,15 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" id="loginBtn" data-bs-toggle="modal"
-                                    data-bs-target="#loginModal" href="">LOGIN</a></li>
+                            <!--Previous popout window code  <li><a class="dropdown-item" id="loginBtn" data-bs-toggle="modal"
+                                    data-bs-target="#loginModal" href="">LOGIN</a></li>-->
+                            {% if current_user.is_anonymous %}
+                            <li><a class="dropdown-item" href="{{ url_for('login' ) }}">LOGIN</a></li>
                             <!-- put this back in a tag if needed: href="{{ url_for('account') }}" -->
+                            {% else %}
+                            <li><a class="dropdown-item" href="{{ url_for('user', username=current_user.username ) }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout' ) }}">Logout</a></li>
+                            {% endif %}
                         </ul>
                     <li class="nav-item">
                         <form class="d-flex search-bar form-inline" role="search"><input id="search" type="search"
@@ -89,9 +95,11 @@
                 </ul>
             </div>
         </div>
-    </nav>
+</div>
+</nav>
 </header>
 
+<!-- pop out window - I couldn't get it to work witht he validation
 <body>
     <div class="modal fade p-5" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
@@ -121,6 +129,11 @@
             </div>
         </div>
     </div>
+
+-->
+
+
+
     <!-- commenting the old navbar out for now while I try and make it Bootstrap friendly -->
     <!-- <nav class="navbar ">
       <div class="d-flex container-fluid justify-content-evenly">

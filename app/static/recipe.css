@@ -1,0 +1,584 @@
+/* this has all been grabbed from code pen to test JS and page naviagtion */
+/* to be altered and changed/ removed */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: all 0.2s ease;
+}
+
+html,
+body {
+    background: var(--color-primary);
+    scroll-behavior: smooth;
+}
+
+section {
+    background: var(--color-bg);
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    min-height: calc(100vh - 80px);
+    position: relative;
+    margin: 40px auto;
+    overflow: hidden;
+}
+
+section#cover span.side {
+    position: absolute;
+    height: 100%;
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 24px;
+    border-right: 1px solid var(--color-primary);
+    z-index: 100;
+    font-family: 'Playfair Display', serif;
+}
+
+section#cover span.side h2 {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+section#cover span.side svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--color-primary);
+}
+
+section#cover .content {
+    position: absolute;
+    width: calc(100% - 160px);
+    height: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    line-height: 110%;
+    align-items: center;
+    flex: 3;
+    display: flex;
+    position: relative;
+    padding-right: 80px;
+}
+
+section h1:before {
+    position: absolute;
+    content: '';
+    width: 80px;
+    height: 6px;
+    background: var(--color-primary);
+    bottom: 0;
+}
+
+section#cover .content span {
+    font-style: italic;
+    letter-spacing: 1px;
+    font-size: 24px;
+    font-weight: 400;
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+
+section#cover .content span a {
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+section#cover .content figure {
+    width: 100%;
+    height: 60%;
+    flex: 3;
+    position: relative;
+}
+
+section#cover .content figure img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+figcaption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    color: var(--color-bg);
+    font-family: 'Lato', serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 16px 32px;
+    opacity: 0.6;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);
+}
+
+section#recipe {
+    background: var(--color-bg);
+    color: var(--color-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    line-height: 160%;
+}
+
+section#recipe .overview {
+    border: 1px solid red;
+    width: 100%;
+}
+
+section#recipe .description {
+    width: 100%;
+    padding: 40px 0;
+}
+
+section#recipe .recipe_details {
+    width: 100%;
+}
+
+section#recipe {
+    padding: 80px;
+}
+
+section#recipe h1 {
+    padding-bottom: 56px;
+}
+
+section#recipe .recipe_details ul {
+    list-style: none;
+    background: var(--color-primary);
+    color: var(--color-accent);
+    display: flex;
+    padding: 24px 0;
+}
+
+section#recipe .recipe_details ul li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-style: italic;
+}
+
+section#recipe .recipe_details ul li span,
+section#recipe .recipe-content > div > h2 {
+    font-family: 'Lato', serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-style: normal;
+}
+
+section#recipe .recipe-content {
+    width: 100%;
+    display: flex;
+    margin-top: 56px;
+}
+
+section#recipe .recipe-content > div {
+    width: 50%;
+}
+
+section#recipe .recipe-content > div > h2 {
+    margin-bottom: 32px;
+}
+
+section#recipe .recipe-content .ing-list {
+    padding-right: 56px;
+    display: flex;
+    flex-direction: column;
+}
+
+section#recipe .recipe-content .recipe-list {
+    padding-left: 56px;
+}
+
+section#recipe .recipe-content > div > h2 {
+    font-weight: 900;
+}
+
+section#recipe .recipe-content > div:first-of-type {
+    border-right: 1px solid var(--color-primary);
+}
+
+section#recipe .recipe-content .ingredients {
+    margin-bottom: 24px;
+}
+
+section#recipe .recipe-content .ing-list figure img {
+    width: 100%;
+}
+
+section#recipe .recipe-content .ing-list figure {
+    width: 100%;
+    flex: 1;
+    position: relative;
+}
+
+section#recipe .recipe-content .ing-list figure img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+p.variation {
+    font-size: 16px;
+    margin-bottom: 48px;
+}
+
+p.variation span {
+    font-family: 'Lato', serif;
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-style: normal;
+}
+
+ol {
+    list-style: none;
+    counter-reset: counter;
+    margin: 0;
+    padding: 0;
+    margin-left: 40px;
+}
+
+ol > li {
+    counter-increment: counter;
+    margin-bottom: 16px;
+    width: 100%;
+    position: relative;
+}
+
+ol > li::before {
+    content: counter(counter) '.';
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1rem;
+    color: var(--color-accent);
+    font-family: 'Playfair Display', serif;
+    /*    border: 1px solid green;*/
+    min-width: 48px;
+    max-width: 48px;
+    position: absolute;
+    margin-left: -64px;
+    text-align: right;
+}
+
+ol > li > ul {
+    margin-left: 24px;
+    list-style-type: square;
+    margin-top: 16px;
+}
+
+ol > li > ul > li {
+    margin-bottom: 8px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    display: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    margin-top: 8px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: var(--color-primary);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: '\2713';
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    background: var(--color-primary);
+    font-size: 12px;
+    line-height: 12px;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    color: var(--color-bg);
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 768px) {
+    section {
+        width: calc(100% - 48px);
+        height: calc(100% - 48px);
+        min-height: calc(100vh - 48px);
+        margin: 24px auto;
+    }
+
+    section#recipe {
+        padding: 56px 40px;
+    }
+
+    section#cover .content {
+        width: calc(100% - 80px);
+    }
+
+    section h1 {
+        font-size: 40px;
+        padding: 0 32px;
+    }
+
+    section#recipe h1 {
+        padding: 0 0 56px 0;
+    }
+
+    section#cover .content span {
+        font-size: 22px;
+        padding: 0 32px;
+    }
+
+    section#recipe .recipe-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 56px;
+    }
+
+    section#recipe .recipe-content > div {
+        width: 100%;
+    }
+
+    section#recipe .recipe-content > div:first-of-type {
+        border-right: none;
+        border-bottom: 6px solid var(--color-primary);
+    }
+
+    section#recipe .recipe-content .ing-list {
+        padding-right: 0;
+        padding-bottom: 56px;
+    }
+
+    section#recipe .recipe-content .recipe-list {
+        padding-left: 0;
+        padding-top: 56px;
+    }
+
+    section#recipe .recipe_details ul {
+        background: var(--color-primary);
+        display: flex;
+        flex-wrap: wrap;
+        padding: 24px 0;
+    }
+
+    section#recipe .recipe_details ul li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-width: 50%;
+        padding: 24px;
+    }
+}
+
+/* correct css */
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.header_part {
+    position: relative; /* Change absolute to relative */
+    width: 100%; /* Change width to 100% */
+    text-align: center; /* Center align the content */
+}
+
+/* Adjust the top margin to position it below the logo */
+.header_part h1 {
+    margin-top: 150px; /* Adjust this value according to your design */
+}
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://t3.ftcdn.net/jpg/02/52/38/80/360_F_252388016_KjPnB9vglSCuUJAumCDNbmMzGdzPAucK.jpg');
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+h1 {
+    color: rgb(229, 220, 220);
+}
+
+.main-nav {
+    list-style: none;
+    float: centre;
+    margin-top: 20px;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.main-nav li a {
+    color: white;
+    text-decoration: none;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 100px;
+    float: left;
+    margin-top: 30px;
+}
+
+.active {
+    background-color: #04aa6d;
+    color: white;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    color: #24cf3b;
+    border-bottom: 2px solid blue;
+    transition: all 1.5s ease-in; /* Adjust the  transition duration */
+    padding: 15px 0;
+}
+
+.btn {
+    border: 1px solid #24cf3b;
+    padding: 10px 30px;
+    color: #24cf3b;
+    text-decoration: none;
+    border-radius: 12px;
+    margin-right: 15px;
+}
+
+.button-awesome {
+    margin-top: 40px;
+}
+
+.btn-half:hover {
+    background-color: #24cf3b;
+    color: white;
+    transition: all 0.5s ease-in;
+}
+
+.btn-full:hover {
+    background-color: blue;
+    color: white;
+    transition: all 0.5s ease-in;
+}
+.copy {
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 20px;
+}
+
+h3:after {
+    width: 100px;
+    height: 2px;
+    background-color: #24cf3b;
+    display: block;
+    content: ' ';
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.features h3 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.arranging {
+    text-align: justify;
+}
+
+.features i {
+    font-size: 40px;
+    color: black;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+.features h4 {
+    margin-left: 55px;
+}
+
+.dropdown-content {
+    display: none; /* Hide the dropdown content by default */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Display the dropdown content when hovering over the dropdown */
+}
+
+.dropdown-content a {
+    display: block; /* Display each link as a block element */
+}
