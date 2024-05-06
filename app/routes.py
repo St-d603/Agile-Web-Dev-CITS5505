@@ -1,19 +1,11 @@
-from flask import render_template, flash, redirect, url_for
-from app import app 
-from flask_login import current_user, login_user
-from app.forms import LoginForm
-from flask_login import logout_user
-from flask_login import login_required
+from flask import render_template, flash, redirect, url_for, request
+from app import app
+from flask_login import current_user, login_user, login_required
 import sqlalchemy as sa
 from app import db
-from app.models import User
-from app.models import Post
-from app.forms import LoginForm
-from livereload import Server
-from app.forms import RegistrationForm
-from flask import request
+from app.models import User, Post
+from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from urllib.parse import urlsplit
-from app.forms import EditProfileForm
 
 
 @app.route("/")
@@ -21,56 +13,60 @@ def html():
     return render_template("HTML.html")
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('html'))
+        return redirect(url_for("html"))
     form = LoginForm()
     if form.validate_on_submit():
         user = db.session.scalar(
-            sa.select(User).where(User.username == form.username.data))
+            sa.select(User).where(User.username == form.username.data)
+        )
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
+            flash("Invalid username or password")
+            return redirect(url_for("login"))
         login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or urlsplit(next_page).netloc != '':
-            next_page = url_for('html')
+        next_page = request.args.get("next")
+        if not next_page or urlsplit(next_page).netloc != "":
+            next_page = url_for("html")
         return redirect(next_page)
-    return render_template('login.html', form=form)
+    return render_template("login.html", form=form)
 
 
-@app.route('/logout')
+@app.route("/logout")
 def logout():
-    logout_user()
-    return redirect(url_for('html'))
+    # logout_user()
+    return redirect(url_for("html"))
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('html'))
+        return redirect(url_for("html"))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+        flash("Congratulations, you are now a registered user!")
+        return redirect(url_for("login"))
+    return render_template("register.html", title="Register", form=form)
 
-@app.route('/user/<username>')
+
+@app.route("/user/<username>")
 @login_required
 def user(username):
     user = db.first_or_404(sa.select(User).where(User.username == username))
     posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
+        {"author": user, "body": "Test post #1"},
+        {"author": user, "body": "Test post #2"},
     ]
-    return render_template('user.html', user=user, posts=posts)
+    return render_template("user.html", user=user, posts=posts)
+
 
 from datetime import datetime, timezone
+
 
 @app.before_request
 def before_request():
@@ -79,7 +75,7 @@ def before_request():
         db.session.commit()
 
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
+@app.route("/edit_profile", methods=["GET", "POST"])
 @login_required
 def edit_profile():
     form = EditProfileForm()
@@ -87,13 +83,12 @@ def edit_profile():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
         db.session.commit()
-        flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
-    elif request.method == 'GET':
+        flash("Your changes have been saved.")
+        return redirect(url_for("edit_profile"))
+    elif request.method == "GET":
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile',
-                           form=form)
+    return render_template("edit_profile.html", title="Edit Profile", form=form)
 
 
 @app.route("/recipes")
@@ -116,16 +111,15 @@ def account():
     return render_template("account.html")
 
 
-
 @app.route("/blog")
 def blog():
-    #conn = get_db_connection()
-   # posts = conn.execute("SELECT * FROM posts").fetchall()
-   # conn.close()
+    # conn = get_db_connection()
+    # posts = conn.execute("SELECT * FROM posts").fetchall()
+    # conn.close()
     return render_template("blog.html")
 
 
-@app.route('/create', methods=['GET', 'POST'])
+@app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
     form = Post()
@@ -133,38 +127,18 @@ def create():
         post = Post(body=form.body.data, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your post has been created!', 'success')
-        return redirect(url_for('blog'))
-    return render_template('create.html', title='Create Post', form=form)
-
-
-
+        flash("Your post has been created!", "success")
+        return redirect(url_for("blog"))
+    return render_template("create.html", title="Create Post", form=form)
 
 
 @app.route("/<int:id>/edit/", methods=("GET", "POST"))
 def edit(id):
-    #post = get_post(id)
-
-
-
-
+    # post = get_post(id)
     return render_template("edit.html")
 
 
 @app.route("/<int:id>/delete/", methods=("POST",))
 def delete(id):
-    
+
     return redirect(url_for("blog"))
-
-
-
-if __name__ == "__main__":
-    app.secret_key = "Secret145"
-    # app.run(debug=True)
-
-    app.debug = True
-    from livereload import Server
-
-    server = Server(app.wsgi_app)
-    server.serve(host="0.0.0.0", port=5000, debug=True)
-

@@ -82,7 +82,7 @@ This will be updated with project details and ideas
 
 ## Local Set-up & Deploying
 
-To run the project locally, first set up a `venv`, `pip` install requirements-dev and then run flask.
+To run the project locally, first set up a `venv`, then `pip install` `requirements-dev` and then run flask.
 
 ```sh
 python3 -m venv tmp-env
@@ -91,11 +91,11 @@ pip install -r requirements-dev.txt # (this includes requirements.txt)
 flask run
 ```
 
-If you would like to run with "livereload", run `app.py` with python instead of calling `flask run`.
+If you would like to run with "livereload", run `python local_dev.py` instead of calling `flask run`.
 This works well if you are editing HTML/CSS, not so great for editing Python files.
 
 ```sh
-python app.py
+python local_dev.py
 ```
 
 When deploying to production, only install `requirements.txt` (don't install `requirements.dev.txt`)
