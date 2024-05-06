@@ -29,11 +29,13 @@
 </head>
 
 <body class="d-flex flex-column justify-content-between">
+   
     <!-- Navbar -->
     {% include 'includes/_navbar.html' %}
 
    
     <!-- Content -->
+
     <div class="content flex-grow-1">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -65,7 +67,11 @@
     <!-- Mapbox Geocoder Plugin -->
     <script
         src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-    <!-- Custom JS -->
+   <!-- JQuery Script -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
+   <!-- Custom JS -->
     <script src="{{ url_for('static', filename='JS.js') }}"></script>
 </body>
 

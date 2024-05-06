@@ -1,4 +1,27 @@
-// Just commenting the map out for now as it was causing an error
+// tour js 
+
+const driver = window.driver.js.driver;
+
+const driverObj = driver({
+  showProgress: true,
+  steps: [
+    { element: '.nav', popover: { title: 'Get Started', description: "Let's take a quick tour to see what Foodie Hub is all about!" } },
+    { element: '#recipeNav', popover: { title: 'Looking for something to eat?', description: 'Select from our delicious range of meals' } },
+    { element: '#Recommed', popover: { title: 'Discover new places to eat', description: 'Want a new favourite restraunt? Click here!' } },
+    { element: '#cus', popover: { title: 'Needing something more specific?', description: ' Click here, for more detailed recipes!' } },
+    { element: '#users', popover: { title: 'Want to join us?', description: 'Looking to post, respond and keep connected? make sure to sign up or login' } },
+    { element: '#logohome', popover: { title: 'Home Navigation', description: 'Want to navigate home, click here' } },
+  ]
+});
+
+driverObj.drive();
+
+function startTour() {
+  driverObj.drive(); // Start the tour
+}
+
+// Event listener for the "Start" button click
+document.getElementById('start').addEventListener('click', startTour);
 
 // please don't span api :( over a threshold and I pay\
 // JS code adapted from MapBox tutorials and chatgpt help
@@ -19,7 +42,12 @@ map.addControl(
   );
 
 
-  
+
+
+
+
+
+
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   //Login forms

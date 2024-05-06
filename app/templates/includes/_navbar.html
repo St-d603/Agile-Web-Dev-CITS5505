@@ -2,12 +2,11 @@
     <div class="row position-absolute pt-5" id="header-text1">
         <h1 class="p-5">LOOKING TO SPICE UP YOUR LIFE?<br> LOOK NO FURTHER</h1>
         <div class="button-awesome p-5">
-            <a href="" class="btn btn-lg btn-half">Show me more</a>
-            <a href="" class="btn btn-lg btn-half">I'm hungry</a>
+            <button id="start" class="btn btn-lg btn-half">Start Tour </button>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="menu">
         <div class="container-fluid">
             <div class="logo">
                 <img
@@ -15,7 +14,7 @@
             </div>
             <!-- On small screens the navbar toggle button only toggles the dropdown
                 but doesn't retract it. Need to fix-->
-            <a class="navbar-brand" href="{{ url_for('html') }}">Foodie Hub</a>
+            <a class="navbar-brand" href="{{ url_for('html') }}" id="logohome">Foodie Hub</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent,#header-text1" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +24,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" href="{{ url_for('recipes') }}">RECIPES</a>
+                            aria-expanded="false" href="{{ url_for('recipes') }}" id="recipeNav">RECIPES</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ url_for('recipes') }}">BREAKFAST</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('recipes') }}">LUNCH</a></li>
@@ -34,7 +33,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ url_for('new_restaurants') }}" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                            aria-expanded="false" id="Recommed">
                             RESTAURANTS
                         </a>
                         <ul class="dropdown-menu">
@@ -44,7 +43,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ url_for('cuisine') }}" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" id="cus">
                             CUISINE
                         </a>
                         <ul class="dropdown-menu">
@@ -59,7 +58,7 @@
                         </ul>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ url_for('account') }}" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-expanded="false" id="users">
                             FOODIE HUB
                         </a>
                         <ul class="dropdown-menu">
